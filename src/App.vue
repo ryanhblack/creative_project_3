@@ -22,6 +22,9 @@
     </div>
   </div>
   <router-view />
+  <div id="footer">
+    <p style="text-align: center; padding: 0px 25%;">The private repository for this project can be found at <a href="https://github.com/BYU-CS-260-Winter-2020/lab-3b-grocery-store-ryanhblack">https://github.com/BYU-CS-260-Winter-2020/lab-3b-grocery-store-ryanhblack</a></p>
+  </div>
 </div>
 </template>
 
