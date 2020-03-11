@@ -15,6 +15,7 @@
         <button v-on:click="addToCart(product)">+</button>
       </div>
     </div>
+    <p v-if="this.$root.$data.cart.length == 0" class="empty">Your shopping cart is empty. Add items to see them here!</p>
   </div>
 </div>
 </template>
@@ -61,6 +62,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.empty {
+  font-style: italic;
 }
 
 .products {
