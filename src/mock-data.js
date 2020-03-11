@@ -86,7 +86,7 @@ let mock = [{
   },
   {
     id: 13,
-    name: "Feta Chees",
+    name: "Feta Cheese",
     price: "$6.92",
     country: "Brazil",
     image: "feta-cheese.jpg"
@@ -222,7 +222,7 @@ let mock = [{
   {
     id: 32,
     name: "Lemon",
-    price: "$2.8Lemon5",
+    price: "$2.85",
     country: "United States",
     image: "lemon.jpg"
   },
