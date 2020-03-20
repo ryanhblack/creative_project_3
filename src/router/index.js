@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Browse from '../views/Browse.vue'
-import Cart from '../views/Cart.vue'
+import Post from '../views/Post.vue'
+import Contacts from '../views/Contacts.vue'
 
 Vue.use(VueRouter)
 
@@ -13,14 +13,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/browse',
-    name: 'Browse',
-    component: Browse
+    path: '/post',
+    name: 'Post',
+    component: Post
   },
   {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart
+    path: '/contacts',
+    name: 'Contacts',
+    component: Contacts
   },
 ]
 

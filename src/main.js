@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import mock from './mock-data.js'
+import mock from '../data/mock-data.js'
 
 let data = {
-  products: mock,
-  cart: []
+  addedComment: '',
+  posts: mock.posts,
+  contacts: mock.contacts,
 }
 
 new Vue({

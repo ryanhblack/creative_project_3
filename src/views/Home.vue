@@ -1,33 +1,62 @@
 <template>
 <div>
   <div class="wrapper">
-    <div class="search">
-      <form class="pure-form">
-        <i class="fas fa-search"></i><input v-model="searchText" />
-      </form>
+    <div class="posts">
+      <div class="post add">
+        <p class="user">Posting as: {{getName(1)}}</p>
+        <form v-on:submit.prevent="addComment">
+        <p class="comment">
+          <input v-model="addedComment" />
+          <button class="btn btn-primary" type="submit">
+            <svg class="bi bi-reply-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.079 11.9l4.568-3.281a.719.719 0 000-1.238L9.079 4.1A.716.716 0 008 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+            </svg>
+          </button>
+        </p>
+        </form>
+      </div>
+      <div class="post" v-for="post in this.$root.$data.posts" :key="post.id">
+        <p class="user">{{getName(post.uid)}}</p>
+        <p class="date">{{getDate(post.time)}}</p>
+        <p class="comment">{{post.comment}}</p>
+      </div>
     </div>
-  </div>
-  <ProductList :products="products" />
+  </div>  
 </div>
 </template>
 
 <script>
-import ProductList from "../components/ProductList.vue"
 export default {
   name: 'Home',
-  components: {
-    ProductList
-  },
-  data() {
+  data: function() {
     return {
-      searchText: '',
-    }
+      addedComment: '',
+    };
   },
-  computed: {
-    products() {
-      return this.$root.$data.products.filter(product => product.name.toLowerCase().search(this.searchText) >= 0);
-    }
-  },
+  methods: {
+    getDate(timecode) {
+      var date = new Date(timecode * 1000);
+      return (date.getMonth() + 1) + "/" + date.getDate() + "/" + (date.getFullYear() % 100) + " " + date.getHours() + ":" + ("0" + date.getMinutes()).substr(-2) + " GMT";
+    },
+    getName(uid) {
+      var users = this.$root.$data.contacts;
+      return users.filter(e => e.id == uid)[0].name;
+    },
+    addComment() {
+      if (this.addedComment == '') return;
+      var currDate = new Date();
+      var date = Math.round(currDate.getTime() / 1000);
+      var id = this.$root.$data.posts[0].id + 1;
+      var uid = 1;
+      this.$root.$data.posts.unshift({
+        id: id,
+        uid: uid,
+        comment: this.addedComment,
+        time: date,
+      });
+      this.addedComment = '';
+    },
+  }
 }
 </script>
 
@@ -38,29 +67,45 @@ export default {
   justify-content: center;
 }
 
-.search {
+.posts {
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 50%;
-}
-
-form {
-  display: table;
+  padding: 10px;
+  padding-bottom: 0px;
+  max-width: 800px;
   width: 100%;
+  background-color: #ccc;
+  margin: 0;
 }
 
-i {
-  display: table-cell;
-  padding-left: 10px;
-  width: 1px;
+.post {
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 5px;
+  margin: 0px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px #111;
 }
 
-input {
-  display: table-cell;
-  font-size: 20px;
-  border: none !important;
-  box-shadow: none !important;
-  width: 100%;
-  height: 40px;
+p.user {
+  margin-bottom: 0px;
+  font-weight: 700;
+}
+
+p.date {
+  margin-bottom: 5px;
+  color: #666;
+  font-size: 80%;
+}
+
+p.comment {
+  margin: 0px;
+  font-size: 200%
+}
+
+.comment button {
+  background-color: blue;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 </style>

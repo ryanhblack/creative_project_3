@@ -3,44 +3,40 @@
   <div id="menu">
     <div id="brand">
       <router-link to="/">
-        <img src="/images/logo.png">
+        <img src="/images/logo.png"><br>
+        Friendzapp
       </router-link>
     </div>
     <div id="side">
-      <router-link to="/browse">
-        <div class="menu-item browse">
-          <img src="/images/globe.png">
-          <p>Browse</p>
+      <router-link to="/post">
+        <div class="menu-item post">
+          <p><span class="icon">
+          <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 100-6 3 3 0 000 6zm7.5-3a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+          </svg>
+          </span><br>
+          Add Contact</p>
         </div>
       </router-link>
-      <router-link to="/cart">
+      <router-link to="/contacts">
         <div class="menu-item">
-          <img src="/images/love.png">
-          <p>{{numberOfItems}} items</p>
+          <p><span class="icon">
+          <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"/>
+          </svg>
+          </span><br>
+          Contacts</p>
         </div>
       </router-link>
     </div>
   </div>
   <router-view />
   <div id="footer">
-    <p style="text-align: center; padding: 0px 25%;">The private repository for this project can be found at <a href="https://github.com/BYU-CS-260-Winter-2020/lab-3b-grocery-store-ryanhblack">https://github.com/BYU-CS-260-Winter-2020/lab-3b-grocery-store-ryanhblack</a></p>
+    <p style="text-align: center; padding: 0px 25%;">The repository for this project can be found at <a href="https://github.com/ryanhblack/creative_project_3">https://github.com/ryanhblack/creative_project_3</a></p>
   </div>
 </div>
 </template>
-
-<script>
-export default {
-  computed: {
-    numberOfItems() {
-      var total = 0;
-      for (let i = 0; i < this.$root.$data.cart.length; i++) {
-        total += this.$root.$data.cart[i].quantity;
-      }
-      return total;
-    },
-  },
-}
-</script>
 
 <style>
 * {
@@ -48,7 +44,7 @@ export default {
 }
 
 body {
-  margin: 50px 100px;
+  margin: 20px;;
 
 }
 
@@ -61,17 +57,20 @@ body {
 }
 
 #menu a {
-  color: #B84901;
+  color: #000;
 }
 
 #brand {
   grid-area: brand;
   display: flex;
   justify-content: center;
+  text-align: center;
+  font-size: 200%;
+  font-weight: 900;
 }
 
 #brand img {
-  height: 200px;
+  height: 150px;
 }
 
 #side {
@@ -80,8 +79,8 @@ body {
   justify-content: flex-end;
 }
 
-#side img {
-  width: 50px;
+#side span {
+  font-size: 200%;
 }
 
 .menu-item {
@@ -91,9 +90,15 @@ body {
 
 .menu-item p {
   margin: 0px;
+  text-align: center;
 }
 
-.browse {
+.post {
   margin-right: 50px;
+}
+
+#footer {
+  word-wrap: break-word;
+  margin-top: 10px;
 }
 </style>
